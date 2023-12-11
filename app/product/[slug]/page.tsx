@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { MousePointerClick, ShoppingBag } from "lucide-react";
 import { client } from "@/sanity/lib/client";
@@ -5,6 +7,7 @@ import { urlForImage } from "@/sanity/lib/image";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 interface Params {
   params: {
@@ -16,6 +19,9 @@ const Page = async ({ params }: Params) => {
   const product = await client.fetch(
     groq`*[_type == 'product' && slug.current == '${params.slug}'][0]`
   );
+  console.log(product.sizes[0]);
+
+  // const [selectedSize, setSelectedSize] = useState(product?.sizes[0]);
 
   return (
     <main className="mx-10 lg:mx-28 py-10">
@@ -37,9 +43,13 @@ const Page = async ({ params }: Params) => {
           <p className="mt-6">Select Size:</p>
           <div className="flex">
             {product.sizes.map((size: any) => (
-              <p key={size} className="my-3 mr-3 p-3 border-2">
+              <button
+                key={size}
+                className="my-3 mr-3 p-3 border-2"
+                // onClick={() => setSelectedSize(size)}
+              >
                 {size}
-              </p>
+              </button>
             ))}
           </div>
 
