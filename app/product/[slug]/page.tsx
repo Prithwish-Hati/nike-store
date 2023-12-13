@@ -1,4 +1,4 @@
-"use client";
+
 
 import { Button } from "@/components/ui/button";
 import { MousePointerClick, ShoppingBag } from "lucide-react";
@@ -7,7 +7,6 @@ import { urlForImage } from "@/sanity/lib/image";
 import { groq } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 
 interface Params {
   params: {
@@ -20,8 +19,6 @@ const Page = async ({ params }: Params) => {
     groq`*[_type == 'product' && slug.current == '${params.slug}'][0]`
   );
   console.log(product.sizes[0]);
-
-  // const [selectedSize, setSelectedSize] = useState(product?.sizes[0]);
 
   return (
     <main className="mx-10 lg:mx-28 py-10">
