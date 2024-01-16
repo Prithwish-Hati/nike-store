@@ -22,13 +22,12 @@ const PaymentForm = () => {
       });
 
       const clientSecret = data;
-
+      
       await stripe?.confirmCardPayment(clientSecret, {
         payment_method: { card: cardElement },
       });
 
-      return (alert("Payment successful!"));
-
+      return alert("Payment successful!");
     } catch (error: any) {
       console.log(`stripe and/or cardElement is missing ${error.message}`);
     }
@@ -53,7 +52,10 @@ const PaymentForm = () => {
 
       <CardElement className="mt-5 bg-slate-100 p-3 rounded-md" />
 
-      <button type="submit" className="w-full bg-violet-500 mt-10 rounded-md text-white p-3">
+      <button
+        type="submit"
+        className="w-full bg-violet-500 mt-10 rounded-md text-white p-3"
+      >
         Submit
       </button>
     </form>
